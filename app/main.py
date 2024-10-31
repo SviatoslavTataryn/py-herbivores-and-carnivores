@@ -1,25 +1,33 @@
-class Animal:
-    alive = []
+from typing import List
 
-    def __init__(self, name, health=100, hidden=False):
-        self.name = name
-        self.health = health
-        self.hidden = hidden
+class Animal:
+    alive: List["Animal"] = []
+
+    def __init__(
+            self,
+            name: str,
+            health: int = 100,
+            hidden: bool = False) -> None:
+        self.name: str = name
+        self.health: int = health
+        self.hidden: bool = hidden
         Animal.alive.append(self)
 
-    def die(self):
+    def die(self) -> None:
         if self in Animal.alive:
             Animal.alive.remove(self)
 
-    def __repr__(self):
-        return f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
+    def __repr__(self) -> str:
+        return (
+            f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
+        )
 
 class Herbivore(Animal):
-    def hide(self):
+    def hide(self) -> None:
         self.hidden = not self.hidden
 
 class Carnivore(Animal):
-    def bite(self, animal):
+    def bite(self, animal: Animal) -> None:
         if isinstance(animal, Herbivore) and not animal.hidden:
             animal.health -= 50
             if animal.health <= 0:
