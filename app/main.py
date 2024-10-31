@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Animal:
     alive: List["Animal"] = []
 
@@ -7,7 +8,8 @@ class Animal:
             self,
             name: str,
             health: int = 100,
-            hidden: bool = False) -> None:
+            hidden: bool = False
+    ) -> None:
         self.name: str = name
         self.health: int = health
         self.hidden: bool = hidden
@@ -22,9 +24,11 @@ class Animal:
             f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
         )
 
+
 class Herbivore(Animal):
     def hide(self) -> None:
         self.hidden = not self.hidden
+
 
 class Carnivore(Animal):
     def bite(self, animal: Animal) -> None:
